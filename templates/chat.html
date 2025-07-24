@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emmanuel Chat</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f3f3ff;
+    }
+    header {
+      background-color: #4527a0;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .chat-container {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .message {
+      margin: 10px 0;
+      padding: 12px 15px;
+      border-radius: 20px;
+      max-width: 70%;
+      word-wrap: break-word;
+      clear: both;
+    }
+    .message.self {
+      background-color: #d1c4e9;
+      float: right;
+      text-align: right;
+    }
+    .message.other {
+      background-color: #f1f1f1;
+      float: left;
+      text-align: left;
+    }
+    .message strong {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    form {
+      display: flex;
+      margin-top: 30px;
+    }
+    form input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      padding: 10px 20px;
+      background-color: #4527a0;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .back-home {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back-home a {
+      background-color: #5e35b1;
+      padding: 10px 25px;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Emmanuel Chat Room</h1>
+    <p>Feel free to share, inspire, and uplift one another 💬</p>
+  </header>
+
+  <div class="chat-container">
+    {% for message in messages %}
+      <div class="message {% if message.username == session['username'] %}self{% else %}other{% endif %}">
+        <strong>{{ message.username }}</strong>
+        {{ message.content }}
+      </div>
+    {% endfor %}
+
+    <form method="POST">
+      <input type="text" name="content" placeholder="Type your message..." required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <div class="back-home">
+    <a href="{{ url_for('home') }}">← Back to Home</a>
+  </div>
+
+  <footer>
+    &copy; 2025 Emmanuel Ministers | Connecting hearts in Christ
+  </footer>
+</body>
+</html>
