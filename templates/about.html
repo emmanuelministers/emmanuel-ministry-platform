@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Emmanuel Ministers</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f3fc;
+    }
+    header {
+      background-color: #4a148c;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .leaders {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .card h3 {
+      margin: 10px 0 5px;
+      color: #4a148c;
+    }
+    .card p {
+      margin: 0;
+      font-size: 15px;
+      color: #555;
+    }
+    footer {
+      background-color: #eee;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>About Emmanuel Ministers</h1>
+    <p>Meet our dedicated team</p>
+  </header>
+
+  <div class="leaders">
+    <div class="card">
+      <img src="{{ url_for('static', filename='1753158379032.jpg') }}" alt="Collins Odera">
+      <h3>Collins Odera</h3>
+      <p>Chairperson</p>
+    </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='belpha.jpg') }}" alt="Belpha Oiro">
+      <h3>Belpha Oiro</h3>
+      <p>Deputy Chairperson</p>
+    </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='lydia.jpg') }}" alt="Lydia Anyango">
+      <h3>Lydia Anyango</h3>
+      <p>Head of Discipline</p>
+    </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='mercy.jpg') }}" alt="Mercy Ochaka">
+      <h3>Mercy Ochaka</h3>
+      <p>Secretary</p>
+    </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='nicholas.jpg') }}" alt="Nicholas Wego">
+      <h3>Nicholas Wego</h3>
+      <p>Spiritual Leader</p>
+    </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='Snapchat-79203842.jpg') }}" alt="Lenox Otieno">
+      <h3>Lenox Otieno</h3>
+      <p>Software Engineer</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Emmanuel Ministers | All rights reserved
+  </footer>
+
+</body>
+        </html>
