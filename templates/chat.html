@@ -10,6 +10,9 @@
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       background-color: #f3f3ff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
     }
     header {
       background-color: #4527a0;
@@ -18,12 +21,23 @@
       text-align: center;
     }
     .chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       max-width: 800px;
-      margin: 30px auto;
+      margin: auto;
+      width: 100%;
       background-color: #fff;
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 10px;
+      margin-bottom: 10px;
     }
     .message {
       margin: 10px 0;
@@ -50,7 +64,8 @@
     }
     form {
       display: flex;
-      margin-top: 30px;
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
     }
     form input[type="text"] {
       flex: 1;
@@ -69,7 +84,7 @@
     }
     .back-home {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 15px;
     }
     .back-home a {
       background-color: #5e35b1;
@@ -82,7 +97,7 @@
       text-align: center;
       padding: 20px;
       font-size: 14px;
-      margin-top: 40px;
+      background: #f0f0f0;
     }
   </style>
 </head>
@@ -93,12 +108,14 @@
   </header>
 
   <div class="chat-container">
-    {% for message in messages %}
-      <div class="message {% if message.username == session['username'] %}self{% else %}other{% endif %}">
-        <strong>{{ message.username }}</strong>
-        {{ message.content }}
-      </div>
-    {% endfor %}
+    <div class="chat-messages" id="chatMessages">
+      {% for message in messages %}
+        <div class="message {% if message.username == session['username'] %}self{% else %}other{% endif %}">
+          <strong>{{ message.username }}</strong>
+          {{ message.content }}
+        </div>
+      {% endfor %}
+    </div>
 
     <form method="POST">
       <input type="text" name="content" placeholder="Type your message..." required>
@@ -113,5 +130,11 @@
   <footer>
     &copy; 2025 Emmanuel Ministers | Connecting hearts in Christ
   </footer>
+
+  <script>
+    // Auto scroll to bottom
+    const chatBox = document.getElementById("chatMessages");
+    chatBox.scrollTop = chatBox.scrollHeight;
+  </script>
 </body>
 </html>
