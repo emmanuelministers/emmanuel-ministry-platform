@@ -67,17 +67,17 @@
     <h2>Share Your Quote</h2>
     <form method="POST">
       <input type="text" name="author" placeholder="Your Name" required>
-      <textarea name="content" placeholder="Your inspirational quote..." required></textarea>
+      <textarea name="quote" placeholder="Your inspirational quote..." required></textarea>
       <button type="submit">Submit Quote</button>
     </form>
 
     <h2>All Quotes</h2>
     {% for quote in quotes %}
       <div class="quote">
-        <p>"{{ quote.content }}"</p>
+        <p>"{{ quote.quote }}"</p>
         <p><strong>- {{ quote.author }}</strong></p>
       </div>
     {% endfor %}
   </div>
 </body>
-    </html>
+</html>
