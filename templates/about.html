@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us | Emmanuel Ministers</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
       background-color: #f3f3fc;
     }
     header {
@@ -32,20 +31,28 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     .card img {
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
     .card h3 {
-      margin: 10px 0 5px;
+      margin: 8px 0 4px;
       color: #4a148c;
     }
     .card p {
-      margin: 0;
+      margin: 4px 0;
       font-size: 15px;
-      color: #555;
+      color: #444;
+    }
+    .description {
+      text-align: center;
+      margin: 0 auto;
+      max-width: 800px;
+      font-size: 17px;
+      padding: 15px;
+      color: #333;
     }
     footer {
       background-color: #eee;
@@ -62,36 +69,57 @@
     <p>Meet our dedicated team</p>
   </header>
 
+  <div class="description">
+    <p><strong>Emmanuel Ministers</strong> is a spiritual youth movement based in Kamnara SDA Church. We are united in service to Christ through music, prayer, and leadership. Our mission is to inspire, guide and nurture youth in truth and love.</p>
+  </div>
+
   <div class="leaders">
     <div class="card">
       <img src="{{ url_for('static', filename='1753158379032.jpg') }}" alt="Collins Odera">
       <h3>Collins Odera</h3>
       <p>Chairperson</p>
+      <p>Leads the ministry with wisdom and vision.</p>
     </div>
     <div class="card">
       <img src="{{ url_for('static', filename='belpha.jpg') }}" alt="Belpha Oiro">
       <h3>Belpha Oiro</h3>
       <p>Deputy Chairperson</p>
+      <p>Supports leadership and mobilizes youth programs.</p>
     </div>
     <div class="card">
       <img src="{{ url_for('static', filename='lydia.jpg') }}" alt="Lydia Anyango">
       <h3>Lydia Anyango</h3>
       <p>Head of Discipline</p>
+      <p>Upholds spiritual and behavioral integrity in the team.</p>
     </div>
     <div class="card">
       <img src="{{ url_for('static', filename='mercy.jpg') }}" alt="Mercy Ochaka">
       <h3>Mercy Ochaka</h3>
       <p>Secretary</p>
+      <p>Maintains records and ensures smooth communication.</p>
     </div>
     <div class="card">
       <img src="{{ url_for('static', filename='nicholas.jpg') }}" alt="Nicholas Wego">
       <h3>Nicholas Wego</h3>
       <p>Spiritual Leader</p>
+      <p>Guides the team in devotion and prayer life.</p>
     </div>
     <div class="card">
       <img src="{{ url_for('static', filename='Snapchat-79203842.jpg') }}" alt="Lenox Otieno">
       <h3>Lenox Otieno</h3>
       <p>Software Engineer</p>
+      <p>Manages and builds the digital platforms for the ministry.</p>
+    </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='musicdirector.gpg') }}" alt="Brian Onyango">
+      <h3>Brian Onyango</h3>
+      <p>Music Director</p>
+      <p>Leads music training, composition, and choir sessions.</p>
+    </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='our-team.gpg') }}" alt="Our Team">
+      <h3>Our Entire Team</h3>
+      <p>United in love, working together to serve the Lord.</p>
     </div>
   </div>
 
@@ -100,4 +128,4 @@
   </footer>
 
 </body>
-        </html>
+                        </html>
