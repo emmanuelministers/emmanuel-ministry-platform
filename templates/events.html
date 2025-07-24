@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Events | Emmanuel Ministers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4527a0;
+      color: white;
+      text-align: center;
+      padding: 30px 10px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .event-card {
+      border-left: 6px solid #5e35b1;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      background-color: #fafafa;
+      border-radius: 6px;
+    }
+    .event-card h3 {
+      margin-top: 0;
+      color: #4527a0;
+    }
+    .form-section {
+      margin-top: 40px;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #4527a0;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #5e35b1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Upcoming Events</h1>
+    <p>Stay connected with our ministry programs and updates</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Static Events -->
+    <div class="event-card">
+      <h3>Choir Training</h3>
+      <p>Every Tuesday and Thursday from 9:00 AM – 10:00 AM</p>
+    </div>
+
+    <div class="event-card">
+      <h3>Fasting and Prayer</h3>
+      <p>Every Wednesday (All day fasting and prayer schedule)</p>
+    </div>
+
+    <div class="event-card">
+      <h3>Camp Meetings</h3>
+      <p>Running throughout this month and the next</p>
+    </div>
+
+    <!-- Dynamic Events -->
+    {% for event in events %}
+    <div class="event-card">
+      <h3>{{ event.title }}</h3>
+      <p>{{ event.details }}</p>
+    </div>
+    {% endfor %}
+
+    <!-- Event Submission Form -->
+    <div class="form-section">
+      <h2>Submit New Event</h2>
+      <form method="POST">
+        <input type="text" name="title" placeholder="Event Title" required>
+        <textarea name="details" placeholder="Event Details..." rows="4" required></textarea>
+        <button type="submit">Add Event</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
