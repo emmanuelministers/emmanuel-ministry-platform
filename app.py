@@ -5,8 +5,10 @@ import os
 app = Flask(__name__)
 app.secret_key = 'emmanuel_secret_key'  # For session management
 
-# Database config
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ministry.db'
+# ======================
+# PostgreSQL Database Config (from Render)
+# ======================
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql://emmanuel_db_user:7PeS4NByxU3SS3cqsSMpGANmiXwxwXtZ@dpg-d2164uemcj7s73eg7em0-a.oregon-postgres.render.com/emmanuel_db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -50,10 +52,6 @@ def about():
 def gallery():
     return render_template('gallery.html')
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
 @app.route('/quotes', methods=['GET', 'POST'])
 def quotes():
     if request.method == 'POST':
@@ -63,7 +61,7 @@ def quotes():
         db.session.add(new_quote)
         db.session.commit()
         return redirect(url_for('quotes'))
-    
+
     quotes = Quote.query.all()
     return render_template('quotes.html', quotes=quotes)
 
@@ -77,7 +75,7 @@ def events():
         db.session.commit()
         return redirect(url_for('events'))
 
-    events = Event.query.all()
+    events = Event.query.order_by(Event.id.desc()).all()
     return render_template('events.html', events=events)
 
 # ========== Auth ==========
@@ -94,7 +92,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
-    
+
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -108,7 +106,7 @@ def login():
             return redirect(url_for('chat'))
         else:
             return "Invalid credentials"
-    
+
     return render_template('login.html')
 
 @app.route('/logout')
