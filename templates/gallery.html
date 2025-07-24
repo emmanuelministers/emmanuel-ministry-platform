@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery | Emmanuel Ministers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafaff;
+    }
+    header {
+      background-color: #4527a0;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+    footer {
+      background-color: #eee;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Our Gallery</h1>
+    <p>A glimpse of our moments and ministry events</p>
+  </header>
+
+  <div class="gallery">
+    <img src="{{ url_for('static', filename='members.jpg') }}" alt="Members">
+    <img src="{{ url_for('static', filename='lydia.jpg') }}" alt="Lydia Anyango">
+    <img src="{{ url_for('static', filename='belpha.jpg') }}" alt="Belpha Oiro">
+    <img src="{{ url_for('static', filename='mercy.jpg') }}" alt="Mercy Ochaka">
+    <img src="{{ url_for('static', filename='nicholas.jpg') }}" alt="Nicholas Wego">
+    <img src="{{ url_for('static', filename='Snapchat-79203842.jpg') }}" alt="Lenox Otieno">
+    <img src="{{ url_for('static', filename='emmanuel-ministers.png') }}" alt="Logo">
+  </div>
+
+  <footer>
+    &copy; 2025 Emmanuel Ministers | Uplifting Christ Through Service
+  </footer>
+
+</body>
+</html>
