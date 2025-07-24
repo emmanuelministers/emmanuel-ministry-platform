@@ -3,17 +3,21 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
-app.secret_key = 'emmanuel_secret_key'  # For session management
+app.secret_key = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 
 # ======================
-# PostgreSQL Database Config (from Render)
+# Secure PostgreSQL Configuration
 # ======================
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql://emmanuel_db_user:7PeS4NByxU3SS3cqsSMpGANmiXwxwXtZ@dpg-d2164uemcj7s73eg7em0-a.oregon-postgres.render.com/emmanuel_db')
+database_url = os.environ.get('DATABASE_URL')
+if not database_url:
+    raise ValueError("DATABASE_URL environment variable not set")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # ======================
-# Database Models
+# Models
 # ======================
 
 class User(db.Model):
