@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 
 # ======================
-# Secure PostgreSQL Configuration
+# PostgreSQL Configuration
 # ======================
 database_url = os.environ.get('DATABASE_URL')
 if not database_url:
@@ -33,7 +33,7 @@ class Message(db.Model):
 class Quote(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.String(50), nullable=False)
-    quote = db.Column(db.String(300), nullable=False)
+    content = db.Column(db.String(300), nullable=False)
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -46,28 +46,28 @@ class Event(db.Model):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', username=session.get('username'))
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', username=session.get('username'))
 
 @app.route('/gallery')
 def gallery():
-    return render_template('gallery.html')
+    return render_template('gallery.html', username=session.get('username'))
 
 @app.route('/quotes', methods=['GET', 'POST'])
 def quotes():
     if request.method == 'POST':
         author = request.form['author']
-        quote = request.form['quote']
-        new_quote = Quote(author=author, quote=quote)
+        content = request.form['quote']
+        new_quote = Quote(author=author, content=content)
         db.session.add(new_quote)
         db.session.commit()
         return redirect(url_for('quotes'))
 
     quotes = Quote.query.all()
-    return render_template('quotes.html', quotes=quotes)
+    return render_template('quotes.html', quotes=quotes, username=session.get('username'))
 
 @app.route('/events', methods=['GET', 'POST'])
 def events():
@@ -80,7 +80,7 @@ def events():
         return redirect(url_for('events'))
 
     events = Event.query.order_by(Event.id.desc()).all()
-    return render_template('events.html', events=events)
+    return render_template('events.html', events=events, username=session.get('username'))
 
 # ========== Auth ==========
 
@@ -135,6 +135,14 @@ def chat():
 
     messages = Message.query.order_by(Message.id.asc()).all()
     return render_template('chat.html', messages=messages, username=session['username'])
+
+@app.route('/get_messages')
+def get_messages():
+    messages = Message.query.order_by(Message.id.asc()).all()
+    return jsonify([
+        {"username": msg.username, "content": msg.content}
+        for msg in messages
+    ])
 
 # ======================
 # Run the app
