@@ -3,65 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <title>Gallery | Emmanuel Ministers</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #fafaff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
     }
+
     header {
       background-color: #4527a0;
       color: white;
-      padding: 40px 20px;
       text-align: center;
+      padding: 2rem 1rem;
     }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 30px;
+      padding: 40px;
+      max-width: 1200px;
+      margin: auto;
     }
-    .gallery img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
+
+    .photo-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s ease;
     }
-    .gallery img:hover {
+
+    .photo-card:hover {
       transform: scale(1.03);
     }
+
+    .photo-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .caption {
+      padding: 12px;
+      font-size: 0.95rem;
+      color: #333;
+      text-align: center;
+    }
+
     footer {
-      background-color: #eee;
       text-align: center;
       padding: 20px;
-      font-size: 14px;
+      background-color: #eee;
+      color: #666;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Our Gallery</h1>
-    <p>A glimpse of our moments and ministry events</p>
+    <h1>📸 Ministry Gallery</h1>
+    <p>Captured Moments of Emmanuel Ministers</p>
   </header>
 
   <div class="gallery">
-    <img src="{{ url_for('static', filename='members.jpg') }}" alt="Members">
-    <img src="{{ url_for('static', filename='lydia.jpg') }}" alt="Lydia Anyango">
-    <img src="{{ url_for('static', filename='belpha.jpg') }}" alt="Belpha Oiro">
-    <img src="{{ url_for('static', filename='mercy.jpg') }}" alt="Mercy Ochaka">
-    <img src="{{ url_for('static', filename='nicholas.jpg') }}" alt="Nicholas Wego">
-    <img src="{{ url_for('static', filename='Snapchat-79203842.jpg') }}" alt="Lenox Otieno">
-    <img src="{{ url_for('static', filename='emmanuel-ministers.png') }}" alt="Logo">
+    <!-- Example Photo Card -->
+    <div class="photo-card">
+      <img src="/static/1753158379032.jpg" alt="Opening Sabbath">
+      <div class="caption">Opening Sabbath Moment</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="/static/IMG-20250719-WA0009.jpg" alt="Group Fellowship">
+      <div class="caption">Group Fellowship</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="/static/IMG-20250724-WA0001.jpg" alt="Wednesday Worship">
+      <div class="caption">Wednesday Worship</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="/static/belpha.jpg" alt="Belpha Oiro">
+      <div class="caption">Belpha Oiro – Deputy Chair</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="/static/mercy.jpg" alt="Mercy Ochaka">
+      <div class="caption">Mercy Ochaka – Secretary</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="/static/lydia.jpg" alt="Lydia Anyango">
+      <div class="caption">Lydia Anyango – Discipline</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="/static/musicdirector.jpg" alt="Music Director">
+      <div class="caption">Music Director</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="/static/members.jpg" alt="Core Team">
+      <div class="caption">Core Team Members</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="/static/kamnarasda.jpg" alt="Kamnara SDA">
+      <div class="caption">Kamnara SDA Church</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="/static/akalacamp.jpg" alt="Akala Camp">
+      <div class="caption">Akala Camp Adventure</div>
+    </div>
+
+    <!-- You can add more photo cards below this by repeating the structure -->
+
   </div>
 
   <footer>
-    &copy; 2025 Emmanuel Ministers | Uplifting Christ Through Service
+    Emmanuel Ministers © 2025 — Empowered to Serve 🕊️
   </footer>
 
 </body>
