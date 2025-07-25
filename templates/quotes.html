@@ -17,7 +17,7 @@
       text-align: center;
     }
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 40px auto;
       background: white;
       padding: 20px;
@@ -27,24 +27,6 @@
     h2 {
       text-align: center;
       color: #4527a0;
-    }
-    form {
-      margin-bottom: 30px;
-    }
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #4527a0;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
     }
     .quote {
       background: #eee;
@@ -70,26 +52,48 @@
   <header>
     <h1>Inspirational Quotes</h1>
     <p>From the hearts of Emmanuel Ministers 💬</p>
-    {% if username %}
-      <p>Logged in as <strong>{{ username }}</strong></p>
-    {% else %}
-      <p><a href="{{ url_for('login') }}" style="color: white; text-decoration: underline;">Login</a> to share your quote.</p>
-    {% endif %}
   </header>
 
   <div class="container">
-    <h2>Share Your Quote</h2>
-    <form method="POST">
-      <input type="text" name="author" placeholder="Your Name" required>
-      <textarea name="quote" placeholder="Your inspirational quote..." required></textarea>
-      <button type="submit">Submit Quote</button>
-    </form>
+    <h2>Wisdom & Encouragement</h2>
 
-    <h2>All Quotes</h2>
-    {% for quote in quotes %}
+    {% set quotes = [
+      ("God doesn’t call the qualified, He qualifies the called.", "Unknown"),
+      ("Faith is taking the first step even when you don’t see the whole staircase.", "Martin Luther King Jr."),
+      ("Your purpose is not just to exist but to make an impact.", "Emmanuel Ministers"),
+      ("The youth shall see visions — Joel 2:28. Dream big with God.", "Scripture Inspired"),
+      ("Do not be afraid, for I am with you. – Isaiah 41:10", "Bible"),
+      ("Great leaders don’t set out to be leaders... They set out to make a difference.", "Lisa Haisha"),
+      ("Let your light shine before others — Matthew 5:16", "Jesus"),
+      ("When God is your strength, nothing can break you.", "Unknown"),
+      ("Bloom where God plants you.", "Unknown"),
+      ("Pray. Trust. Wait.", "Unknown"),
+      ("God’s delays are not His denials.", "Unknown"),
+      ("Obedience opens doors.", "Emmanuel Ministers"),
+      ("A little faith can move mountains.", "Jesus"),
+      ("What you feed will grow. Feed your spirit.", "Unknown"),
+      ("Don’t count the days. Make the days count — especially for Christ.", "Emmanuel Ministers"),
+      ("Even in silence, God is working.", "Unknown"),
+      ("Never be ashamed to stand for Jesus.", "Paul the Apostle"),
+      ("God’s timing is perfect. Trust the process.", "Unknown"),
+      ("Your mess can become your message.", "Unknown"),
+      ("The greatest act of leadership is service.", "Jesus Christ"),
+      ("Dreams fueled by faith never die.", "Emmanuel Ministers"),
+      ("If God brings you to it, He will bring you through it.", "Unknown"),
+      ("You are chosen, not forsaken.", "Romans 8:30"),
+      ("Youth is not wasted when invested in God’s work.", "Emmanuel Ministers"),
+      ("Christ in you, the hope of glory.", "Colossians 1:27"),
+      ("Don’t fear the fire. God uses it to refine you.", "Unknown"),
+      ("God has never lost a battle, and He won’t start with you.", "Unknown"),
+      ("Be still and know that I am God — Psalm 46:10", "Bible"),
+      ("Leadership starts with following Christ.", "Emmanuel Ministers"),
+      ("Purpose is birthed through prayer.", "Unknown")
+    ] %}
+
+    {% for content, author in quotes %}
       <div class="quote">
-        <p>"{{ quote.content }}"</p>
-        <p><strong>- {{ quote.author }}</strong></p>
+        <p>"{{ content }}"</p>
+        <p><strong>- {{ author }}</strong></p>
       </div>
     {% endfor %}
 
