@@ -30,11 +30,6 @@ class Message(db.Model):
     username = db.Column(db.String(50), nullable=False)
     content = db.Column(db.String(500), nullable=False)
 
-class Quote(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    author = db.Column(db.String(50), nullable=False)
-    content = db.Column(db.String(300), nullable=False)
-
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -56,18 +51,9 @@ def about():
 def gallery():
     return render_template('gallery.html', username=session.get('username'))
 
-@app.route('/quotes', methods=['GET', 'POST'])
+@app.route('/quotes')
 def quotes():
-    if request.method == 'POST':
-        author = request.form['author']
-        content = request.form['quote']
-        new_quote = Quote(author=author, content=content)
-        db.session.add(new_quote)
-        db.session.commit()
-        return redirect(url_for('quotes'))
-
-    quotes = Quote.query.all()
-    return render_template('quotes.html', quotes=quotes, username=session.get('username'))
+    return render_template('quotes.html', username=session.get('username'))
 
 @app.route('/events', methods=['GET', 'POST'])
 def events():
@@ -151,22 +137,6 @@ def get_messages():
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
-
-if __name__ == "__main__":
-    with app.app_context():
-        # Drop only the 'quote' table if it exists
-        try:
-            Quote.__table__.drop(db.engine)
-            print("✅ Dropped old 'quote' table.")
-        except Exception as e:
-            print(f"⚠️ Could not drop 'quote' table: {e}")
-
-        # Recreate all tables
-        db.create_all()
-        print("✅ All tables created successfully.")
 
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=True)
