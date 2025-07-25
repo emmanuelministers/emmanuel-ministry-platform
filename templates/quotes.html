@@ -55,12 +55,26 @@
     .quote strong {
       color: #333;
     }
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-link a {
+      text-decoration: none;
+      color: #4527a0;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Inspirational Quotes</h1>
     <p>From the hearts of Emmanuel Ministers 💬</p>
+    {% if username %}
+      <p>Logged in as <strong>{{ username }}</strong></p>
+    {% else %}
+      <p><a href="{{ url_for('login') }}" style="color: white; text-decoration: underline;">Login</a> to share your quote.</p>
+    {% endif %}
   </header>
 
   <div class="container">
@@ -78,6 +92,10 @@
         <p><strong>- {{ quote.author }}</strong></p>
       </div>
     {% endfor %}
+
+    <div class="back-link">
+      <a href="{{ url_for('home') }}">← Back to Home</a>
+    </div>
   </div>
 </body>
 </html>
