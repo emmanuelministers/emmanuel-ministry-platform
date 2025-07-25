@@ -5,59 +5,134 @@
   <title>Emmanuel Ministers | Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #f2f2f2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f3f1fa;
+      color: #333;
     }
     header {
-      background-color: #4527a0;
+      background: linear-gradient(to right, #4a148c, #6a1b9a);
       color: white;
-      padding: 30px;
+      padding: 50px 20px;
       text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
     }
     nav {
-      background-color: #5e35b1;
-      padding: 15px;
+      background: #5e35b1;
       text-align: center;
+      padding: 12px;
     }
     nav a {
-      color: white;
-      margin: 0 15px;
+      color: #fff;
       text-decoration: none;
+      margin: 0 20px;
       font-weight: bold;
+      transition: color 0.3s;
     }
-    .intro {
-      padding: 40px;
+    nav a:hover {
+      color: #ffeb3b;
+    }
+
+    .section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .intro-text {
       text-align: center;
     }
+    .intro-text h2 {
+      color: #4a148c;
+      font-size: 2rem;
+    }
+    .intro-text p {
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+
     .leaders {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
     }
-    .leader {
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
     }
-    .leader img {
-      width: 180px;
-      height: 180px;
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card img {
+      width: 140px;
+      height: 140px;
       object-fit: cover;
-      border-radius: 100px;
-      border: 4px solid #4527a0;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border-radius: 50%;
+      border: 4px solid #6a1b9a;
+      margin-bottom: 15px;
     }
-    footer {
-      text-align: center;
-      padding: 25px;
-      background-color: #ddd;
+    .card h3 {
+      color: #6a1b9a;
+      margin-bottom: 5px;
+    }
+    .card p {
       font-size: 14px;
+      color: #555;
     }
-    .contact {
+
+    .gallery {
+      margin-top: 60px;
+      text-align: center;
+    }
+    .gallery h2 {
+      color: #4a148c;
+    }
+    .gallery-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
       margin-top: 20px;
+    }
+    .gallery-item {
+      width: 300px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .gallery-item p {
+      margin-top: 10px;
+      font-style: italic;
+      color: #444;
+    }
+
+    footer {
+      background: #ddd;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -65,7 +140,7 @@
 
   <header>
     <h1>Welcome to Emmanuel Ministers</h1>
-    <p>Empowered to uplift God's name through youth ministry 🙏</p>
+    <p>A family of youth on fire for Christ 🔥 Spreading hope, faith, and purpose.</p>
   </header>
 
   <nav>
@@ -79,28 +154,54 @@
     <a href="/login">Login</a>
   </nav>
 
-  <section class="intro">
-    <h2>Our Leadership</h2>
+  <section class="section intro-text">
+    <h2>Our Mission</h2>
+    <p>
+      Emmanuel Ministers is more than a youth group — we are a movement of young people 
+      called to proclaim God's love, transform lives, and serve with passion. Whether you're 
+      a singer, leader, techie, intercessor or just eager to grow, there's a place for you here.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2 style="text-align:center;">Meet Our Leaders</h2>
     <div class="leaders">
-      <div class="leader">
+      <div class="card">
         <img src="{{ url_for('static', filename='1753158379032.jpg') }}" alt="Chairperson">
         <h3>Collins Odera</h3>
-        <p>Chairperson</p>
+        <p>Chairperson - Leads with wisdom and Godly vision. “We walk by faith.”</p>
       </div>
-      <div class="leader">
+      <div class="card">
         <img src="{{ url_for('static', filename='belpha.jpg') }}" alt="Deputy Chairperson">
         <h3>Belpha Oiro</h3>
-        <p>Deputy Chairperson</p>
+        <p>Deputy Chair - The heartbeat of support and spiritual encouragement.</p>
+      </div>
+      <div class="card">
+        <img src="{{ url_for('static', filename='musicdirector.jpg') }}" alt="Music Director">
+        <h3>Brian Onyango</h3>
+        <p>Music Director - Raising melodies that touch souls and reach heaven.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gallery">
+    <h2>Our Ministry in Action</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="{{ url_for('static', filename='akalacamp.jpg') }}" alt="Akala Camp">
+        <p>Akala Camp – Where revival, bonding, and worship collide. 🏕️</p>
+      </div>
+      <div class="gallery-item">
+        <img src="{{ url_for('static', filename='kamnarasda.jpg') }}" alt="Kamnara SDA">
+        <p>Kamnara SDA – Our home base, our altar of fellowship. 🕊️</p>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>Contact us: <strong>emmanuelministers522@gmail.com</strong></p>
-    <div class="contact">
-      <p>&copy; 2025 Emmanuel Ministers | All Rights Reserved</p>
-    </div>
+    Contact us: <strong>emmanuelministers522@gmail.com</strong> <br>
+    &copy; 2025 Emmanuel Ministers | All Rights Reserved
   </footer>
 
 </body>
-      </html>
+                           </html>
