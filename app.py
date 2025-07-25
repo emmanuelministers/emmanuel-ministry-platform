@@ -47,6 +47,10 @@ def home():
 def about():
     return render_template('about.html', username=session.get('username'))
 
+@app.route('/sermon')
+def sermon():
+    return render_template('sermon.html')
+
 @app.route('/gallery')
 def gallery():
     return render_template('gallery.html', username=session.get('username'))
