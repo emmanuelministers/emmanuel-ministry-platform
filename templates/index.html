@@ -187,18 +187,26 @@
   <section class="section gallery">
     <h2>Our Ministry in Action</h2>
     <div class="gallery-grid">
+      {% for img in [
+        'akalacamp.jpg', 'kamnarasda.jpg', 'IMG-20250719-WA0009.jpg',
+        'IMG-20250719-WA0010.jpg', 'IMG-20250719-WA0011.jpg',
+        'IMG-20250722-WA0000.jpg', 'IMG-20250724-WA0001.jpg',
+        'IMG-20250724-WA0002.jpg', 'IMG-20250724-WA0004.jpg',
+        'IMG-20250724-WA0007.jpg', 'IMG-20250724-WA0008.jpg',
+        'IMG-20250724-WA0011.jpg', 'IMG-20250724-WA0015.jpg',
+        'IMG-20250724-WA0017.jpg', 'IMG-20250724-WA0018.jpg',
+        'IMG-20250724-WA0019.jpg', 'IMG-20250724-WA0020.jpg',
+        'IMG-20250724-WA0022.jpg', 'IMG-20250724-WA0023.jpg',
+        'IMG-20250724-WA0024.jpg', 'IMG-20250724-WA0027.jpg',
+        'Snapchat-79203842.jpg', 'belpha.jpg', 'lydia.jpg',
+        'mercy.jpg', 'nicholas.jpg', 'musicdirector.jpg',
+        'our-team.jpg', 'members.jpg'
+      ] %}
       <div class="gallery-item">
-        <img src="{{ url_for('static', filename='IMG-20250724-WA0017.jpg') }}" alt="Akala Camp">
-        <p>Akala Camp – Where revival, bonding, and worship collide. 🏕️</p>
+        <img src="{{ url_for('static', filename=img) }}" alt="Ministry Photo">
+        <p>Ministry Life</p>
       </div>
- <div class="gallery-item">
-        <img src="{{ url_for('static', filename='IMG-20250724-WA0008.jpg') }}" alt="We embrace unity">
-        <p>Feel free to be in this platform . 🏕️</p>
-      </div>
-      <div class="gallery-item">
-        <img src="{{ url_for('static', filename='kamnarasda.jpg') }}" alt="Kamnara SDA">
-        <p>Kamnara SDA – Our home base, our altar of fellowship. 🕊️</p>
-      </div>
+      {% endfor %}
     </div>
   </section>
 
@@ -208,4 +216,4 @@
   </footer>
 
 </body>
-                           </html>
+</html>
