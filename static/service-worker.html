@@ -1,0 +1,59 @@
+const CACHE_NAME = "emmanuel-v1";
+const OFFLINE_URLS = [
+  "/",
+  "/about",
+  "/sermon",
+  "/quotes",
+  "/gallery",
+  "/static/icon.png",
+  "/static/style.css",
+  "/static/emmanuel-ministers.png", // Add if used in manifest or meta preview
+  "/static/index.html", // Optional, if served as static
+];
+
+// Install event – pre-cache key resources
+self.addEventListener("install", (event) => {
+  self.skipWaiting(); // Activate immediately
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(OFFLINE_URLS);
+    })
+  );
+});
+
+// Activate – clean old cache
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys
+          .filter((key) => key !== CACHE_NAME)
+          .map((key) => caches.delete(key))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+// Fetch – serve cached resources except chat/events
+self.addEventListener("fetch", (event) => {
+  const { request } = event;
+
+  // Only GET requests & not dynamic chat/events
+  if (
+    request.method !== "GET" ||
+    request.url.includes("/chat") ||
+    request.url.includes("/events")
+  ) {
+    return;
+  }
+
+  event.respondWith(
+    caches.match(request).then((cachedResponse) => {
+      return (
+        cachedResponse ||
+        fetch(request).catch(() => caches.match("/")) // fallback to home
+      );
+    })
+  );
+});
