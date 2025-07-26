@@ -230,6 +230,13 @@
     Contact us: <strong>emmanuelministers522@gmail.com</strong> <br>
     &copy; 2025 Emmanuel Ministers | All Rights Reserved
   </footer>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/static/service-worker.js")
+      .then(() => console.log("✅ SW Registered"))
+      .catch((err) => console.log("SW Error:", err));
+  }
+</script>
 
 </body>
 </html>
