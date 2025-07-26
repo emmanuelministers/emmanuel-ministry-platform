@@ -1,0 +1,20 @@
+{
+  "name": "Emmanuel Ministers",
+  "short_name": "Emmanuel",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f1fa",
+  "theme_color": "#6a1b9a",
+  "icons": [
+    {
+      "src": "/static/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
