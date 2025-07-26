@@ -8,7 +8,7 @@
   <!-- ✅ Google Site Verification -->
   <meta name="google-site-verification" content="xYUZRaHwidZ2XrWlFLHEWx0Kj0c1AIAOB_Z-sreFK_4" />
 
-  <!-- ✅ Inline Styles -->
+  <link rel="stylesheet" href="/static/style.css">
   <style>
     * {
       box-sizing: border-box;
@@ -98,6 +98,7 @@
       font-size: 14px;
       color: #555;
     }
+
     .gallery {
       margin-top: 60px;
       text-align: center;
@@ -167,17 +168,17 @@
     <h2 style="text-align:center;">Meet Our Leaders</h2>
     <div class="leaders">
       <div class="card">
-        <img src="{{ url_for('static', filename='1753158379032.jpg') }}" alt="Chairperson">
+        <img src="/static/1753158379032.jpg" alt="Chairperson">
         <h3>Collins Odera</h3>
         <p>Chairperson - Leads with wisdom and Godly vision. “We walk by faith.”</p>
       </div>
       <div class="card">
-        <img src="{{ url_for('static', filename='belpha.jpg') }}" alt="Deputy Chairperson">
+        <img src="/static/belpha.jpg" alt="Deputy Chairperson">
         <h3>Belpha Oiro</h3>
         <p>Deputy Chair - The heartbeat of support and spiritual encouragement.</p>
       </div>
       <div class="card">
-        <img src="{{ url_for('static', filename='musicdirector.jpg') }}" alt="Music Director">
+        <img src="/static/musicdirector.jpg" alt="Music Director">
         <h3>Brian Onyango</h3>
         <p>Music Director - Raising melodies that touch souls and reach heaven.</p>
       </div>
@@ -187,12 +188,18 @@
   <section class="section gallery">
     <h2>Our Ministry in Action</h2>
     <div class="gallery-grid">
-      {% for image, caption in gallery %}
-      <div class="gallery-item">
-        <img src="{{ url_for('static', filename=image) }}" alt="{{ caption }}">
-        <p>{{ caption }}</p>
-      </div>
-      {% endfor %}
+      <!-- All your actual static images go here -->
+      <div class="gallery-item"><img src="/static/akalacamp.jpg" alt=""><p>Akala Camp</p></div>
+      <div class="gallery-item"><img src="/static/kamnarasda.jpg" alt=""><p>Kamnara SDA Church</p></div>
+      <div class="gallery-item"><img src="/static/IMG-20250719-WA0009.jpg" alt=""><p>Team Ministry</p></div>
+      <div class="gallery-item"><img src="/static/IMG-20250724-WA0011.jpg" alt=""><p>Worship Flow</p></div>
+      <div class="gallery-item"><img src="/static/Snapchat-79203842.jpg" alt=""><p>Moments Shared 💖</p></div>
+      <div class="gallery-item"><img src="/static/mercy.jpg" alt=""><p>Mercy - Secretary</p></div>
+      <div class="gallery-item"><img src="/static/lydia.jpg" alt=""><p>Lydia - Discipline Lead</p></div>
+      <div class="gallery-item"><img src="/static/nicholas.jpg" alt=""><p>Nicholas - Support Team</p></div>
+      <div class="gallery-item"><img src="/static/our-team.jpg" alt=""><p>Our Team</p></div>
+      <div class="gallery-item"><img src="/static/members.jpg" alt=""><p>All Ministers Together</p></div>
+      <!-- Add more <div class="gallery-item">... as needed -->
     </div>
   </section>
 
