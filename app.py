@@ -140,6 +140,14 @@ def get_messages():
         for msg in messages
     ])
 
+@app.route("/fix-timestamp")
+def fix_timestamp():
+    try:
+        db.session.execute("ALTER TABLE message ADD COLUMN timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP;")
+        db.session.commit()
+        return "✅ Timestamp column added successfully!"
+    except Exception as e:
+        return f"❌ Error: {str(e)}"
 # ======================
 # Run the app
 # ======================
