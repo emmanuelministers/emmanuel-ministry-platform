@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emmanuel Chat</title>
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
-  
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
   <!-- 🔍 Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DX39Q0LDQH"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-DX39Q0LDQH');
   </script>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Emmanuel Chat</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      margin: 0;
       background-color: #f3f3ff;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       height: 100vh;
     }
+
     header {
       background-color: #4527a0;
       color: white;
       padding: 20px;
       text-align: center;
     }
+
     .chat-container {
       flex: 1;
       display: flex;
       flex-direction: column;
       max-width: 800px;
-      margin: auto;
-      width: 100%;
+      margin: 20px auto;
       background-color: #fff;
-      padding: 20px;
       border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     .chat-messages {
       flex: 1;
       overflow-y: auto;
       padding-right: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
+
     .message {
       margin: 10px 0;
       padding: 12px 15px;
@@ -58,58 +61,61 @@
       word-wrap: break-word;
       clear: both;
     }
+
     .message.self {
       background-color: #d1c4e9;
       float: right;
       text-align: right;
     }
+
     .message.other {
       background-color: #f1f1f1;
       float: left;
       text-align: left;
     }
+
     .message strong {
       display: block;
-      margin-bottom: 5px;
       font-weight: bold;
+      margin-bottom: 5px;
     }
-    .message small {
-      display: block;
-      font-size: 0.75em;
-      color: gray;
-      margin-top: 5px;
-    }
+
     form {
       display: flex;
-      padding-top: 10px;
       border-top: 1px solid #ddd;
+      padding-top: 10px;
     }
-    form input[type="text"] {
+
+    input[type="text"] {
       flex: 1;
       padding: 10px;
       border-radius: 20px;
       border: 1px solid #ccc;
     }
-    form button {
+
+    button {
+      margin-left: 10px;
       padding: 10px 20px;
       background-color: #4527a0;
       color: white;
       border: none;
       border-radius: 20px;
-      margin-left: 10px;
       cursor: pointer;
     }
+
     .back-home {
       text-align: center;
       margin-top: 15px;
     }
+
     .back-home a {
       background-color: #5e35b1;
-      padding: 10px 25px;
       color: white;
+      padding: 10px 25px;
       text-decoration: none;
       border-radius: 10px;
     }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -118,6 +124,7 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Emmanuel Chat Room</h1>
@@ -155,12 +162,7 @@
             const div = document.createElement("div");
             div.classList.add("message");
             div.classList.add(msg.username === "{{ session['username'] }}" ? "self" : "other");
-
-            div.innerHTML = `
-              <strong>${msg.username}</strong>
-              ${msg.content}
-              <small>🕒 ${msg.timestamp}</small>
-            `;
+            div.innerHTML = `<strong>${msg.username}</strong><br>${msg.content}`;
             chatBox.appendChild(div);
           });
 
