@@ -134,20 +134,11 @@ def get_messages():
     return jsonify([
         {
             "username": msg.username,
-            "content": msg.content,
-            "timestamp": msg.timestamp.strftime("%Y-%m-%d %H:%M:%S")
+            "content": msg.content
         }
         for msg in messages
     ])
 
-@app.route("/fix-timestamp")
-def fix_timestamp():
-    try:
-        db.session.execute("ALTER TABLE message ADD COLUMN timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP;")
-        db.session.commit()
-        return "✅ Timestamp column added successfully!"
-    except Exception as e:
-        return f"❌ Error: {str(e)}"
 # ======================
 # Run the app
 # ======================
