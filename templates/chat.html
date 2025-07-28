@@ -47,7 +47,7 @@
     }
 
     .chat-messages {
-  scroll-behavior: smooth;
+      scroll-behavior: smooth;
       flex: 1;
       overflow-y: auto;
       padding-right: 10px;
@@ -133,12 +133,10 @@
   </header>
 
   <div class="chat-container">
-    <div class="chat-messages" id="chatMessages">
-      <!-- Messages will be injected here -->
-    </div>
+    <div class="chat-messages" id="chatMessages"></div>
 
-    <form method="POST">
-      <input type="text" name="content" placeholder="Type your message..." required>
+    <form id="chatForm">
+      <input type="text" name="content" id="chatInput" placeholder="Type your message..." required>
       <button type="submit">Send</button>
     </form>
   </div>
@@ -151,35 +149,50 @@
     &copy; 2025 Emmanuel Ministers | Connecting hearts in Christ
   </footer>
 
- <script>
-  function fetchMessages() {
-    fetch("/get_messages")
-      .then(response => response.json())
-      .then(data => {
-        const chatBox = document.getElementById("chatMessages");
+  <script>
+    const chatBox = document.getElementById("chatMessages");
+    const chatForm = document.getElementById("chatForm");
+    const chatInput = document.getElementById("chatInput");
 
-        const shouldScroll =
-          chatBox.scrollTop + chatBox.clientHeight >= chatBox.scrollHeight - 50;
+    function fetchMessages() {
+      fetch("/get_messages")
+        .then(response => response.json())
+        .then(data => {
+          const shouldScroll = chatBox.scrollTop + chatBox.clientHeight >= chatBox.scrollHeight - 100;
+          chatBox.innerHTML = "";
 
-        chatBox.innerHTML = "";
+          data.forEach(msg => {
+            const div = document.createElement("div");
+            div.classList.add("message");
+            div.classList.add(msg.username === "{{ session['username'] }}" ? "self" : "other");
+            div.innerHTML = `<strong>${msg.username}</strong><br>${msg.content}`;
+            chatBox.appendChild(div);
+          });
 
-        data.forEach(msg => {
-          const div = document.createElement("div");
-          div.classList.add("message");
-          div.classList.add(msg.username === "{{ session['username'] }}" ? "self" : "other");
-          div.innerHTML = `<strong>${msg.username}</strong><br>${msg.content}`;
-          chatBox.appendChild(div);
+          if (shouldScroll) {
+            chatBox.scrollTop = chatBox.scrollHeight;
+          }
         });
+    }
 
-        // Scroll only if user is near the bottom
-        if (shouldScroll) {
-          chatBox.scrollTop = chatBox.scrollHeight;
-        }
+    // AJAX-based form submission
+    chatForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const content = chatInput.value.trim();
+      if (!content) return;
+
+      fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ content: content })
+      }).then(() => {
+        chatInput.value = "";
+        fetchMessages();
       });
-  }
+    });
 
-  setInterval(fetchMessages, 3000);
-  window.onload = fetchMessages;
-</script>
+    setInterval(fetchMessages, 3000);
+    window.onload = fetchMessages;
+  </script>
 </body>
 </html>
